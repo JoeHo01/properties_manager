@@ -37,9 +37,10 @@ public class FileUtil {
         return str.toString();
     }
 
-    public static boolean writeFile(String fiePath, String content, boolean append) {//append是否文件末尾追加
+    public static boolean writeFile(String path, String name, String content, boolean append) {//append是否文件末尾追加
         try {
-            File file = new File(fiePath);
+            File file = new File(path + "/" + name);
+            createDirectory(path);
             if (!file.exists()) file.createNewFile();
             FileOutputStream out = new FileOutputStream(file, append);
             out.write(content.getBytes("utf-8"));
@@ -58,15 +59,14 @@ public class FileUtil {
 
     public static boolean deleteFile(String path) {
         File file = new File(path);
-        if (file.exists()){
+        if (file.exists()) {
             file.delete();
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     public static void upload(CommonsMultipartFile file, String path, String fileName) throws IOException {
-        if (createDirectory(path)){
+        if (createDirectory(path)) {
             File newFile = new File(path + fileName);
             //通过CommonsMultipartFile的方法直接写文件
             file.transferTo(newFile);

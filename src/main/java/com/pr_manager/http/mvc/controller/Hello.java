@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("hello")
+@RequestMapping("properties")
 public class Hello {
-    @RequestMapping
+    @RequestMapping("hello")
     public String hello(){
-        return "Hello World";
+        return "Properties Manager is Running";
     }
 }
