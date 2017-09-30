@@ -1,5 +1,6 @@
 package com.pr_manager.http.mvc.service;
 
+import com.pr_manager.common.utils.ExecUtil;
 import com.pr_manager.common.utils.FileUtil;
 import com.pr_manager.http.mvc.dao.ExplanationDao;
 import com.pr_manager.http.mvc.entity.ExplanationEntity;
@@ -22,12 +23,7 @@ public class ExplanationService {
         boolean IF_write = FileUtil.writeFile(basePath + "/doc", "apiDoc.java", doc, false);
         if (IF_write) {
             String command = FileUtil.readFile(basePath + "/doc_conf.txt");
-            Runtime runtime = Runtime.getRuntime();
-            try {
-                runtime.exec(command);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            ExecUtil.shellCmd(command);
         }
         return doc;
     }

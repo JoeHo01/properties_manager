@@ -1,11 +1,12 @@
 package com.pr_manager.common.utils;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ShellUtil {
+public class ExecUtil {
 
-    public static String execCmd(String cmd){
+    public static String shellCmd(String cmd){
         try {
             String[] ex = new String[] { "/bin/sh", "-c", cmd };
             Process ps = Runtime.getRuntime().exec(ex);
@@ -24,5 +25,14 @@ public class ShellUtil {
             return null;
         }
 
+    }
+
+    public static void BatCmd(String cmd){
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            runtime.exec("cmd start /c "+cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
