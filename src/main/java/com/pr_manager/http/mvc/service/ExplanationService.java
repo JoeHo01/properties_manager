@@ -24,7 +24,8 @@ public class ExplanationService {
         if (IF_write) {
             String command = FileUtil.readFile(basePath + "/doc_conf.txt");
             ExecUtil.shellCmd(command);
+            return "1";
         }
-        return doc;
+        return null;
     }
 }
